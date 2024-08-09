@@ -1,0 +1,1 @@
+export const baseUrl='https://backendofshop-2.onrender.com/'

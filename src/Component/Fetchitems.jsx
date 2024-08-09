@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { itemAction } from "../store/itemsSlice"
 import { fetchStatusAction } from "../store/fetchStatusSlice"
+import { baseUrl } from "../store/Url"
 const Fetchitems=()=>{
   const fetchitem=useSelector(state=>state.fetchStatus)
   console.log(fetchitem)
@@ -11,7 +12,7 @@ const Fetchitems=()=>{
     const controller=new AbortController();
     const signal=controller.signal;
     dispatch(fetchStatusAction.markFetchingStarted())
-    fetch("http://localhost:8080/items",{signal}).then((res)=>res.json().then(({items})=>{
+    fetch(`${baseUrl}items`,{signal}).then((res)=>res.json().then(({items})=>{
       console.log('df',fetchitem.fetchDone)
       
       dispatch(itemAction.addInitialItems(items))
